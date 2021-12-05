@@ -13,13 +13,13 @@ namespace ConsoleTestAppium
 
         static void Main(string[] args)
         {
-            var pathApp = @"C:\Users\Ivan\Desktop\wikipeadia.apk";
+/*            var pathApp = @"C:\Users\Ivan\Desktop\wikipeadia.apk";*/
 
             //Platform, Device, Application
             var drivetOption = new AppiumOptions();
             drivetOption.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
-            drivetOption.AddAdditionalCapability(MobileCapabilityType.DeviceName, "samsung SM-J320F");
-            drivetOption.AddAdditionalCapability(MobileCapabilityType.PlatformName, pathApp);
+/*            drivetOption.AddAdditionalCapability(MobileCapabilityType.DeviceName, "samsung SM-J320F");*/
+/*            drivetOption.AddAdditionalCapability(MobileCapabilityType.PlatformName, pathApp);*/
 
             AppiumDriver<AndroidElement> _driver = new AndroidDriver<AndroidElement>(new Uri("http://localhost:4723/wd/hub"), drivetOption);
 
