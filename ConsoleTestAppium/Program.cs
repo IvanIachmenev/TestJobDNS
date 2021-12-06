@@ -36,15 +36,16 @@ namespace ConsoleTestAppium
             }
 
             ((IContextAware)_driver).Context = webviewContext;
-            var Text = _driver.FindElementById("org.wikipedia:id/primaryTextView").Text;
-            if(Text.Contains("Свободная энциклопедия …более, чем на 300 языках"))
+            var Text = _driver.FindElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.widget.FrameLayout/android.view.View/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]").Text;
+
+            if(Text.Contains("Свободная энциклопедия\r\n…более, чем на 300 языках"))
             {
-                Console.WriteLine("Test: FAILD!!!");
+                Console.WriteLine("Test: COMPLETE!!!");
                 Console.WriteLine("Output: " + Text);
             }
             else
             {
-                Console.WriteLine("Test: COMPLETE!!!");
+                Console.WriteLine("Test: FAILD!!!");
                 Console.WriteLine("Output: " + Text);
             }
         }
