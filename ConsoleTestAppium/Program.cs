@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium.Appium;
@@ -13,17 +13,13 @@ namespace ConsoleTestAppium
 
         static void Main(string[] args)
         {
-/*            var pathApp = @"C:\Users\Ivan\Desktop\wikipeadia.apk";*/
-
-            //Platform, Device, Application
+            
             var drivetOption = new AppiumOptions();
             drivetOption.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
-/*            drivetOption.AddAdditionalCapability(MobileCapabilityType.DeviceName, "samsung SM-J320F");*/
-/*            drivetOption.AddAdditionalCapability(MobileCapabilityType.PlatformName, pathApp);*/
 
             AppiumDriver<AndroidElement> _driver = new AndroidDriver<AndroidElement>(new Uri("http://localhost:4723/wd/hub"), drivetOption);
 
-            var context = ((IContextAware)_driver).Contexts;
+            /*var context = ((IContextAware)_driver).Contexts;
             string webviewContext = null;
             for(var i = 0; i < context.Count; i++)
             {
@@ -34,19 +30,24 @@ namespace ConsoleTestAppium
                     break;
                 }
             }
-
+            
             ((IContextAware)_driver).Context = webviewContext;
-            var Text = _driver.FindElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.View/android.view.View/android.widget.FrameLayout/android.view.View/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]").Text;
+            */
+            var Text = _driver.FindElementsByXPath("//*[@class='android.widget.TextView']");
 
-            if(Text.Contains("Свободная энциклопедия\r\n…более, чем на 300 языках"))
+            foreach(var text in Text)
             {
-                Console.WriteLine("Test: COMPLETE!!!");
-                Console.WriteLine("Output: " + Text);
-            }
-            else
-            {
-                Console.WriteLine("Test: FAILD!!!");
-                Console.WriteLine("Output: " + Text);
+                if(text.Text.Contains("Свободная энциклопедия\r\n…более, чем на 300 языках"))
+                {
+                    Console.WriteLine("Test: COMPLETE!!!");
+                    Console.WriteLine("Output: " + text.Text);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Test: FAILD!!!");
+                    Console.WriteLine("Output: " + text.Text);
+                }
             }
         }
     }
