@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 using OpenQA.Selenium.Appium;
 using OpenQA.Selenium.Appium.Android;
 using OpenQA.Selenium.Appium.Enums;
@@ -13,28 +12,33 @@ namespace ConsoleTestAppium
 
         static void Main(string[] args)
         {
-            
-            var driverOption = new AppiumOptions();
-            drivetOption.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
 
-            AppiumDriver<AndroidElement> _driver = new AndroidDriver<AndroidElement>(new Uri("http://localhost:4723/wd/hub"), drivetOption);
+            var driverOption = new AppiumOptions();
+            driverOption.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
+
+            AppiumDriver<AndroidElement> _driver = new AndroidDriver<AndroidElement>(new Uri("http://localhost:4723/wd/hub"), driverOption);
 
             var Text = _driver.FindElementsByXPath("//*[@class='android.widget.TextView']");
-
-            foreach(var text in Text)
+            string result = null;
+            foreach (var text in Text)
             {
-                if(text.Text.Contains("Свободная энциклопедия\r\n…более, чем на 300 языках"))
+                if (text.Text.Contains("Свободная энциклопедия\r\n…более, чем на 300 языках"))
                 {
-                    Console.WriteLine("Test: COMPLETED!!!");
-                    Console.WriteLine("Output: " + text.Text);
+                    result = text.Text; 
                     break;
                 }
-                else
-                {
-                    Console.WriteLine("Test: FAILED!!!");
-                    Console.WriteLine("Output: " + text.Text);
-                }
             }
+
+            if(result != null)
+            {
+                Console.WriteLine("Test: COMPLETED!!!");
+                Console.WriteLine("Output: " + result);
+            }
+            else
+            {
+                Console.WriteLine("Test: FAILED!!!");
+            }
+
         }
     }
 }
