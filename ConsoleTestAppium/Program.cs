@@ -18,7 +18,6 @@ namespace ConsoleTestAppium
             driverOption.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Android 21");
             driverOption.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "5.1");
             driverOption.AddAdditionalCapability("fullReset", "false");
-            driverOption.AddAdditionalCapability(MobileCapabilityType.App, @"C:\Users\Ivan\source\repos\ConsoleTestAppium\wikipedia.apk");
             driverOption.AddAdditionalCapability("appPackage", "org.wikipedia");
             driverOption.AddAdditionalCapability("appActivity", "org.wikipedia.main.MainActivity");
             driverOption.AddAdditionalCapability("appWaitForLaunch", "false");
