@@ -15,8 +15,17 @@ namespace ConsoleTestAppium
 
             var driverOption = new AppiumOptions();
             driverOption.AddAdditionalCapability(MobileCapabilityType.PlatformName, "Android");
-
+            driverOption.AddAdditionalCapability(MobileCapabilityType.DeviceName, "Android 21");
+            driverOption.AddAdditionalCapability(MobileCapabilityType.PlatformVersion, "5.1");
+            driverOption.AddAdditionalCapability("fullReset", "false");
+            driverOption.AddAdditionalCapability(MobileCapabilityType.App, @"C:\Users\Ivan\source\repos\ConsoleTestAppium\wikipedia.apk");
+            driverOption.AddAdditionalCapability("appPackage", "org.wikipedia");
+            driverOption.AddAdditionalCapability("appActivity", "org.wikipedia.main.MainActivity");
+            driverOption.AddAdditionalCapability("appWaitForLaunch", "false");
             AppiumDriver<AndroidElement> _driver = new AndroidDriver<AndroidElement>(new Uri("http://localhost:4723/wd/hub"), driverOption);
+
+            
+            _driver.LaunchApp();
 
             var Text = _driver.FindElementsByXPath("//*[@class='android.widget.TextView']");
             string result = null;
